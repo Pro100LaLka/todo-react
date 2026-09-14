@@ -1,11 +1,16 @@
 import Task from "./Task";
 import styles from "./TaskList.module.css";
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, onToggle, onPriorityToggle }) {
   return (
-    <ul className={styles["task-list"]}>
+    <ul className={styles.taskList}>
       {tasks.map((task) => (
-        <Task key={task.id} {...task} />
+        <Task
+          key={task.id}
+          {...task}
+          onToggle={onToggle}
+          onPriorityToggle={onPriorityToggle}
+        />
       ))}
     </ul>
   );

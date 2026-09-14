@@ -1,9 +1,11 @@
+import styles from "./Folders.module.css";
+
 function Folders() {
   return (
-    <ul className="folder-list">
-      <li className="folder">Personal</li>
-      <li className="folder">Work</li>
-      <li className="folder">Archieve</li>
+    <ul className={styles.folderList}>
+      <li className={styles.folder}>Personal</li>
+      <li className={styles.folder}>Work</li>
+      <li className={styles.folder}>Archieve</li>
     </ul>
   );
 }

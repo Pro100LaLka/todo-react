@@ -15,7 +15,8 @@ html {
   --color-sidebar: hsl(220, 20%, 9%);
   --color-surface: hsl(218, 20%, 11%);
   --color-surface-modal: hsl(219, 19%, 15%);
-  --color-border: hsl(218, 17%, 18%);
+  --color-border: hsl(220, 5%, 23%);
+  --color-border-light: hsl(217, 11%, 41%);
   --color-accent: hsl(156, 72%, 67%);
   --color-priority--high: hsl(0, 91%, 71%);
   --color-priority--medium: hsl(43, 96%, 56%);
@@ -24,6 +25,7 @@ html {
   --color-text-primary: hsl(216, 24%, 96%);
   --color-text-secondary: hsl(215, 13%, 65%);
   --color-text-disabled: hsl(218, 11%, 43%);
+  --color-text-accent: hsl(218, 20%, 11%);
 
   --font-inter: "Inter", sans-serif;
   --font-poppins: "Poppins", sans-serif;
@@ -32,4 +34,22 @@ html {
   --radius-card: 14px;
   --radius-modal: 20px;
   --radius-pill: 999px;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-size: 2rem;
+}
+
+ul {
+  list-style: none;
+}
+
+button,
+input {
+  font-size: inherit;
+  color: inherit;
+  border: none;
 }
