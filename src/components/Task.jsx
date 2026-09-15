@@ -1,5 +1,3 @@
-import styles from "./TaskList.module.css";
-
 function Task({
   id,
   isComplete,
@@ -10,41 +8,41 @@ function Task({
   onPriorityToggle,
 }) {
   return (
-    <li className={styles.task}>
+    <li className="bg-slate-900 p-3">
       <details>
-        <summary>
-          <label htmlFor={`toggle-btn-${id}`} className={styles.toggleBtnLabel}>
-            <i className={`fa-solid fa-check ${styles.toggleBtnLabelIcon}`}></i>
+        <summary className="marker:content-none">
+          <label
+            htmlFor={`toggle-btn-${id}`}
+            className="rounded-full border-2 border-gray-500"
+          >
+            <i className="fa-solid fa-check"></i>
           </label>
           <input
             type="checkbox"
             id={`toggle-btn-${id}`}
-            className={styles.toggleBtnInput}
             checked={isComplete}
             onChange={() => onToggle(id)}
+            className="sr-only"
           />
           <span>{title}</span>
           <button
-            className={styles.priorityBtn}
             onClick={() => onPriorityToggle(id)}
             style={{
               color: `var(--color-priority--${priority})`,
             }}
           >
-            <i className={`fa-regular fa-flag ${styles.btnIcon}`}></i>
+            <i className="fa-regular fa-flag"></i>
           </button>
-          <button className={styles.editBtn}>
-            <i className={`fa-solid fa-pencil ${styles.btnIcon}`}></i>
+          <button>
+            <i className="fa-solid fa-pencil"></i>
           </button>
-          <button className={styles.deleteBtn}>
-            <i className={`fa-regular fa-trash-can ${styles.btnIcon}`}></i>
+          <button>
+            <i className="fa-regular fa-trash-can"></i>
           </button>
         </summary>
-        <div className={styles.dropdown}>
-          <p className={styles.description}>
-            {description || "No description"}
-          </p>
-          <p className={styles.priority}>{priority || "No"} priority</p>
+        <div>
+          <p>{description || "No description"}</p>
+          <p>{priority || "No"} priority</p>
         </div>
       </details>
     </li>

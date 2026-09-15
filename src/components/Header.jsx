@@ -1,10 +1,8 @@
-import styles from "./Header.module.css";
-
 function Header({ onAdd }) {
   return (
-    <header className={styles.header}>
-      <h1 className={styles.title}>My Tasks</h1>
-      <button className={styles["add-task"]} onClick={onAdd}>
+    <header className="flex justify-between p-4">
+      <h1 className="text-4xl font-semibold text-white">My Tasks</h1>
+      <button onClick={onAdd} className="size-10 rounded-lg bg-emerald-300">
         <i className="fa-solid fa-plus"></i>
       </button>
     </header>

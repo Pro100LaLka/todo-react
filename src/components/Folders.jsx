@@ -1,11 +1,15 @@
-import styles from "./Folders.module.css";
-
 function Folders() {
   return (
-    <ul className={styles.folderList}>
-      <li className={styles.folder}>Personal</li>
-      <li className={styles.folder}>Work</li>
-      <li className={styles.folder}>Archieve</li>
+    <ul className="flex gap-2 p-2">
+      <li className="font-inter rounded-full bg-slate-900 px-4 py-2 text-base text-neutral-400">
+        Personal
+      </li>
+      <li className="font-inter rounded-full bg-slate-900 px-4 py-2 text-base text-neutral-400">
+        Work
+      </li>
+      <li className="font-inter rounded-full bg-slate-900 px-4 py-2 text-base text-neutral-400">
+        Archieve
+      </li>
     </ul>
   );
 }

@@ -1,55 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&family=Poppins:wght@600&display=swap");
+@import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  font-size: 62.5%;
-}
-
-:root {
-  --color-bg: hsl(218, 22%, 7%);
-  --color-sidebar: hsl(220, 20%, 9%);
-  --color-surface: hsl(218, 20%, 11%);
-  --color-surface-modal: hsl(219, 19%, 15%);
-  --color-border: hsl(220, 5%, 23%);
-  --color-border-light: hsl(217, 11%, 41%);
-  --color-accent: hsl(156, 72%, 67%);
-  --color-priority--high: hsl(0, 91%, 71%);
-  --color-priority--medium: hsl(43, 96%, 56%);
-  --color-priority--low: hsl(216, 19%, 57%);
-
-  --color-text-primary: hsl(216, 24%, 96%);
-  --color-text-secondary: hsl(215, 13%, 65%);
-  --color-text-disabled: hsl(218, 11%, 43%);
-  --color-text-accent: hsl(218, 20%, 11%);
-
-  --font-inter: "Inter", sans-serif;
+@theme {
+  --font-sans: "Inter", sans-serif;
   --font-poppins: "Poppins", sans-serif;
-
-  --radius-input: 10px;
-  --radius-card: 14px;
-  --radius-modal: 20px;
-  --radius-pill: 999px;
 }
 
 body {
-  font-family: var(--font-inter);
-  background-color: var(--color-bg);
-  color: var(--color-text-primary);
-  font-size: 2rem;
-}
-
-ul {
-  list-style: none;
-}
-
-button,
-input {
-  font-size: inherit;
-  color: inherit;
-  border: none;
+  @apply bg-slate-950;
 }

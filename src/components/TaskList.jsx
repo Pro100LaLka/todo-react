@@ -1,9 +1,8 @@
 import Task from "./Task";
-import styles from "./TaskList.module.css";
 
 function TaskList({ tasks, onToggle, onPriorityToggle }) {
   return (
-    <ul className={styles.taskList}>
+    <ul className="flex flex-col gap-2 p-2">
       {tasks.map((task) => (
         <Task
           key={task.id}
