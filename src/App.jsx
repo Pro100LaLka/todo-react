@@ -9,9 +9,20 @@ function App() {
     () => JSON.parse(localStorage.getItem("tasks")) ?? [],
   );
 
-  const [editingTask, setEditingTask] = useState(null);
-
   const taskModal = useRef(null);
+  const emptyTask = {
+    title: "",
+    description: "",
+    dueDate: "",
+    priority: "Low",
+  };
+  const [taskData, setTaskData] = useState(emptyTask);
+
+  function handleFieldChange(field, value) {
+    setTaskData((prev) => ({ ...prev, [field]: value }));
+  }
+
+  const [editingTask, setEditingTask] = useState(null);
 
   function addTask(taskData) {
     setTasks((prev) => [
@@ -24,7 +35,13 @@ function App() {
     ]);
   }
 
-  function handleSave(taskData) {
+  function handleClose() {
+    setTaskData(emptyTask);
+    setEditingTask(null);
+    taskModal.current.close();
+  }
+
+  function handleSave() {
     if (editingTask) {
       setTasks((prev) =>
         prev.map((task) =>
@@ -34,7 +51,7 @@ function App() {
     } else {
       addTask(taskData);
     }
-    taskModal.current.close();
+    handleClose();
   }
 
   function handleTaskToggle(id) {
@@ -64,19 +81,25 @@ function App() {
     );
   }
 
+  function handleEdit(id) {
+    const taskToEdit = tasks.find((task) => task.id === id);
+    setEditingTask(taskToEdit);
+    setTaskData(taskToEdit);
+    taskModal.current.showModal();
+  }
+
   function handleRemove(id) {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   }
 
-  function handleEdit(id) {
-    setEditingTask(tasks.find((task) => task.id === id));
-    taskModal.current.showModal();
-  }
-
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    console.log(tasks);
+    console.log({ tasks });
   }, [tasks]);
+
+  useEffect(() => {
+    console.log({ taskData });
+  }, [taskData]);
 
   return (
     <>
@@ -91,8 +114,10 @@ function App() {
       />
       <TaskModal
         ref={taskModal}
+        taskData={taskData}
+        onFieldChange={handleFieldChange}
         onSave={handleSave}
-        editingTask={editingTask}
+        onClose={handleClose}
       />
     </>
   );

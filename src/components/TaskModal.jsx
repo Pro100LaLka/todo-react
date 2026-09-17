@@ -1,47 +1,15 @@
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 
-function TaskModal({ ref, onSave, editingTask }) {
-  const [taskData, setTaskData] = useState({
-    title: "",
-    description: "",
-    dueDate: "",
-    priority: "Medium",
-  });
-
-  useEffect(() => {
-    if (editingTask) {
-      setTaskData(editingTask);
-    } else {
-      resetTaskInputs();
-    }
-  }, [editingTask]);
-
-  function updateField(field, value) {
-    setTaskData((prev) => ({ ...prev, [field]: value }));
-  }
-
-  function resetTaskInputs() {
-    setTaskData({
-      title: "",
-      description: "",
-      dueDate: "",
-      priority: "Medium",
-    });
-  }
-
-  function closeModal() {
-    ref.current.close();
-    resetTaskInputs();
-  }
-
+function TaskModal({ ref, taskData, onFieldChange, onSave, onClose }) {
   function handleSubmit(e) {
     e.preventDefault();
-    onSave(taskData);
-    resetTaskInputs();
+    onSave();
   }
 
+  const dateInputRef = useRef(null);
+
   function handleDialogClose(e) {
-    if (e.target === e.currentTarget) closeModal();
+    if (e.target === e.currentTarget) onClose();
   }
 
   return (
@@ -54,10 +22,10 @@ function TaskModal({ ref, onSave, editingTask }) {
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-2xl font-semibold">New Task</h2>
           <button
-            onClick={closeModal}
+            onClick={onClose}
             className="flex size-8 items-center justify-center rounded-md text-lg text-gray-400 hover:bg-gray-700"
           >
-            <i class="fa-solid fa-xmark"></i>
+            <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-1">
@@ -68,9 +36,10 @@ function TaskModal({ ref, onSave, editingTask }) {
             type="text"
             id="task-title"
             value={taskData.title}
-            onChange={(e) => updateField("title", e.target.value)}
+            onChange={(e) => onFieldChange("title", e.target.value)}
             autoComplete="off"
-            className="mb-4 rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-neutral-400"
+            className="mb-4 rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-gray-300"
+            required
           />
           <label htmlFor="task-description" className="text-gray-300">
             Description (optional)
@@ -79,9 +48,9 @@ function TaskModal({ ref, onSave, editingTask }) {
             type="text"
             id="task-description"
             value={taskData.description}
-            onChange={(e) => updateField("description", e.target.value)}
+            onChange={(e) => onFieldChange("description", e.target.value)}
             autoComplete="off"
-            className="mb-4 rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-neutral-400"
+            className="mb-4 rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-gray-300"
           />
           <label htmlFor="task-due-date" className="text-gray-300">
             Due date (optional)
@@ -90,19 +59,64 @@ function TaskModal({ ref, onSave, editingTask }) {
             type="date"
             id="task-due-date"
             value={taskData.dueDate}
-            onChange={(e) => updateField("dueDate", e.target.value)}
-            className="mb-6 rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-neutral-400"
+            onChange={(e) => onFieldChange("dueDate", e.target.value)}
+            ref={dateInputRef}
+            onFocus={() => dateInputRef.current.showPicker()}
+            className="relative mb-4 rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-gray-300 [&::-webkit-calendar-picker-indicator]:invert-75"
           />
-
+          <fieldset>
+            <legend className="mb-1 text-gray-300">Priority</legend>
+            <div className="mb-6 grid grid-cols-3 gap-3">
+              <div className="has-checked:text-red-350 rounded-full bg-gray-900 py-1.5 text-center font-semibold text-gray-400 outline outline-neutral-700 has-checked:bg-red-400/30 has-checked:outline-red-400 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
+                <input
+                  type="radio"
+                  name="priority"
+                  id="high"
+                  className="sr-only"
+                  value="High"
+                  checked={taskData.priority === "High"}
+                  onChange={(e) => onFieldChange("priority", e.target.value)}
+                />
+                <label htmlFor="high">High</label>
+              </div>
+              <div className="rounded-full bg-gray-900 py-1.5 text-center font-semibold text-gray-400 outline outline-neutral-700 has-checked:bg-yellow-400/30 has-checked:text-yellow-400 has-checked:outline-yellow-400 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
+                <input
+                  type="radio"
+                  name="priority"
+                  id="medium"
+                  className="sr-only"
+                  value="Medium"
+                  checked={taskData.priority === "Medium"}
+                  onChange={(e) => onFieldChange("priority", e.target.value)}
+                />
+                <label htmlFor="medium">Medium</label>
+              </div>
+              <div className="rounded-full bg-gray-900 py-1.5 text-center font-semibold text-gray-400 outline outline-neutral-700 has-checked:bg-gray-400/30 has-checked:text-gray-300 has-checked:outline-gray-400 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
+                <input
+                  type="radio"
+                  name="priority"
+                  id="low"
+                  className="sr-only"
+                  value="Low"
+                  checked={taskData.priority === "Low"}
+                  onChange={(e) => onFieldChange("priority", e.target.value)}
+                />
+                <label htmlFor="low">Low</label>
+              </div>
+            </div>
+          </fieldset>
           <div className="grid w-full grid-cols-2 gap-x-3">
             <button
               type="button"
-              onClick={closeModal}
-              className="focus: grow rounded-lg py-2.5 outline outline-neutral-700 hover:bg-gray-700 focus:outline-offset-1 focus:outline-gray-600 active:bg-gray-600"
+              onClick={onClose}
+              className="rounded-lg py-2.5 outline outline-neutral-700 hover:bg-gray-700 focus-visible:outline-offset-2 focus-visible:outline-gray-200 active:bg-gray-600"
             >
               Cancel
             </button>
-            <button className="rounded-lg bg-emerald-300 py-2.5 font-medium text-gray-900 outline hover:bg-emerald-200 active:bg-emerald-100">
+            <button
+              type="submit"
+              className="rounded-lg bg-emerald-300 py-2.5 font-medium text-gray-900 outline hover:bg-emerald-200 focus-visible:outline-offset-2 focus-visible:outline-gray-200 active:bg-emerald-100"
+            >
               Save
             </button>
           </div>

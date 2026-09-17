@@ -4,6 +4,8 @@
 @theme {
   --font-sans: "Inter", sans-serif;
   --font-poppins: "Poppins", sans-serif;
+
+  --color-red-350: #f8716f;
 }
 
 body {

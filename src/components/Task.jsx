@@ -11,14 +11,14 @@ function Task({
 }) {
   const priorityColors = {
     Low: "text-gray-400",
-    Medium: "text-yellow-500",
-    High: "text-red-500",
+    Medium: "text-yellow-400",
+    High: "text-red-400",
   };
 
   return (
     <li className="rounded-2xl bg-slate-900 px-3 py-1">
       <details>
-        <summary className="group flex h-10 items-center gap-2 marker:content-none">
+        <summary className="group flex items-center gap-2 py-2 marker:content-none">
           <input
             type="checkbox"
             id={`toggle-btn-${id}`}
@@ -28,7 +28,7 @@ function Task({
           />
           <label
             htmlFor={`toggle-btn-${id}`}
-            className="mx-1 flex size-6 items-center justify-center rounded-full border-2 border-gray-500 peer-checked:border-emerald-300 peer-checked:bg-emerald-300"
+            className="mx-1 flex size-6 shrink-0 items-center justify-center rounded-full border-2 border-gray-500 peer-checked:border-emerald-300 peer-checked:bg-emerald-300 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-gray-200"
           >
             <div className="hidden items-center justify-center group-[:has(:checked)]:flex">
               <i className="fa-solid fa-check text-xs"></i>
