@@ -6,43 +6,53 @@ function Task({
   priority,
   onToggle,
   onPriorityToggle,
+  onEdit,
+  onRemove,
 }) {
+  const priorityColors = {
+    Low: "text-gray-400",
+    Medium: "text-yellow-500",
+    High: "text-red-500",
+  };
+
   return (
-    <li className="bg-slate-900 p-3">
+    <li className="rounded-2xl bg-slate-900 px-3 py-1">
       <details>
-        <summary className="marker:content-none">
-          <label
-            htmlFor={`toggle-btn-${id}`}
-            className="rounded-full border-2 border-gray-500"
-          >
-            <i className="fa-solid fa-check"></i>
-          </label>
+        <summary className="group flex h-10 items-center gap-2 marker:content-none">
           <input
             type="checkbox"
             id={`toggle-btn-${id}`}
             checked={isComplete}
             onChange={() => onToggle(id)}
-            className="sr-only"
+            className="peer sr-only"
           />
-          <span>{title}</span>
+          <label
+            htmlFor={`toggle-btn-${id}`}
+            className="mx-1 flex size-6 items-center justify-center rounded-full border-2 border-gray-500 peer-checked:border-emerald-300 peer-checked:bg-emerald-300"
+          >
+            <div className="hidden items-center justify-center group-[:has(:checked)]:flex">
+              <i className="fa-solid fa-check text-xs"></i>
+            </div>
+          </label>
+          <span className="text-lg text-gray-200">{title}</span>
           <button
             onClick={() => onPriorityToggle(id)}
-            style={{
-              color: `var(--color-priority--${priority})`,
-            }}
+            className={`ml-auto ${priorityColors[priority]}`}
           >
             <i className="fa-regular fa-flag"></i>
           </button>
-          <button>
+          <button onClick={() => onEdit(id)} className="text-gray-400">
             <i className="fa-solid fa-pencil"></i>
           </button>
-          <button>
+          <button onClick={() => onRemove(id)} className="text-gray-400">
             <i className="fa-regular fa-trash-can"></i>
           </button>
         </summary>
-        <div>
-          <p>{description || "No description"}</p>
-          <p>{priority || "No"} priority</p>
+        <div className="m-1 ml-10 border-t border-gray-600 py-2">
+          <p className="mb-2 text-gray-400">
+            {description || "No description"}
+          </p>
+          <p className="text-gray-500">{priority || "No"} priority</p>
         </div>
       </details>
     </li>

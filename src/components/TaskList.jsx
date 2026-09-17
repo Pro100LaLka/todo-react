@@ -1,6 +1,6 @@
 import Task from "./Task";
 
-function TaskList({ tasks, onToggle, onPriorityToggle }) {
+function TaskList({ tasks, onToggle, onPriorityToggle, onEdit, onRemove }) {
   return (
     <ul className="flex flex-col gap-2 p-2">
       {tasks.map((task) => (
@@ -9,6 +9,8 @@ function TaskList({ tasks, onToggle, onPriorityToggle }) {
           {...task}
           onToggle={onToggle}
           onPriorityToggle={onPriorityToggle}
+          onEdit={onEdit}
+          onRemove={onRemove}
         />
       ))}
     </ul>

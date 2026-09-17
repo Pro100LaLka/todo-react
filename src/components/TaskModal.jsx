@@ -1,19 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function AddTaskModal({ ref, onSave }) {
+function TaskModal({ ref, onSave, editingTask }) {
   const [taskData, setTaskData] = useState({
     title: "",
     description: "",
     dueDate: "",
-    priority: "medium",
+    priority: "Medium",
   });
+
+  useEffect(() => {
+    if (editingTask) {
+      setTaskData(editingTask);
+    } else {
+      resetTaskInputs();
+    }
+  }, [editingTask]);
 
   function updateField(field, value) {
     setTaskData((prev) => ({ ...prev, [field]: value }));
   }
 
   function resetTaskInputs() {
-    setTaskData({ title: "", description: "", dueDate: "", priority: "" });
+    setTaskData({
+      title: "",
+      description: "",
+      dueDate: "",
+      priority: "Medium",
+    });
   }
 
   function closeModal() {
@@ -35,10 +48,18 @@ function AddTaskModal({ ref, onSave }) {
     <dialog
       ref={ref}
       onClick={handleDialogClose}
-      className="m-auto w-full rounded-2xl bg-gray-800 px-4 py-6 text-gray-100"
+      className="m-auto w-full rounded-2xl bg-gray-800 text-gray-100"
     >
-      <div>
-        <h2 className="mb-4 text-2xl font-semibold">New Task</h2>
+      <div className="px-4 py-6">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-2xl font-semibold">New Task</h2>
+          <button
+            onClick={closeModal}
+            className="flex size-8 items-center justify-center rounded-md text-lg text-gray-400 hover:bg-gray-700"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
         <form onSubmit={handleSubmit} className="flex flex-col gap-1">
           <label htmlFor="task-title" className="text-gray-300">
             Title
@@ -72,11 +93,12 @@ function AddTaskModal({ ref, onSave }) {
             onChange={(e) => updateField("dueDate", e.target.value)}
             className="mb-6 rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-neutral-400"
           />
+
           <div className="grid w-full grid-cols-2 gap-x-3">
             <button
               type="button"
               onClick={closeModal}
-              className="grow rounded-lg py-2.5 outline outline-neutral-700 hover:bg-gray-700 active:bg-gray-600"
+              className="focus: grow rounded-lg py-2.5 outline outline-neutral-700 hover:bg-gray-700 focus:outline-offset-1 focus:outline-gray-600 active:bg-gray-600"
             >
               Cancel
             </button>
@@ -90,4 +112,4 @@ function AddTaskModal({ ref, onSave }) {
   );
 }
 
-export default AddTaskModal;
+export default TaskModal;
