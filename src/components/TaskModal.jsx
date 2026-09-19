@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-function TaskModal({ ref, taskData, onFieldChange, onSave, onClose }) {
+function TaskModal({ ref, taskData, onFieldChange, folders, onSave, onClose }) {
   function handleSubmit(e) {
     e.preventDefault();
     onSave();
@@ -105,6 +105,24 @@ function TaskModal({ ref, taskData, onFieldChange, onSave, onClose }) {
               </div>
             </div>
           </fieldset>
+          <label htmlFor="task-folder" className="text-gray-300">
+            Folder
+          </label>
+          <div className="mb-4 grid grid-cols-1 items-center">
+            <select
+              id="task-folder"
+              value={taskData.folder}
+              onChange={(e) => onFieldChange("folder", e.target.value)}
+              className="peer col-start-1 row-start-1 w-full appearance-none rounded-lg bg-gray-900 px-3.5 py-2.5 outline outline-neutral-700 focus:outline-gray-300"
+            >
+              {folders.slice(1, -1).map((folder) => (
+                <option key={folder.name} value={folder.name} className="w-5">
+                  {folder.name}
+                </option>
+              ))}
+            </select>
+            <i className="fa-solid fa-chevron-down align-self-center pointer-events-none col-start-1 row-start-1 mr-3 justify-self-end text-gray-400 peer-open:rotate-180"></i>
+          </div>
           <div className="grid w-full grid-cols-2 gap-x-3">
             <button
               type="button"

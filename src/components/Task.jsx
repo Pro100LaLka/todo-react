@@ -34,10 +34,12 @@ function Task({
               <i className="fa-solid fa-check text-xs"></i>
             </div>
           </label>
-          <span className="text-lg text-gray-200">{title}</span>
+          <span className="min-w-0 grow text-lg wrap-break-word text-gray-200">
+            {title}
+          </span>
           <button
             onClick={() => onPriorityToggle(id)}
-            className={`ml-auto ${priorityColors[priority]}`}
+            className={`${priorityColors[priority]}`}
           >
             <i className="fa-regular fa-flag"></i>
           </button>
