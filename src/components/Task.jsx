@@ -18,7 +18,7 @@ function Task({
   return (
     <li className="rounded-2xl bg-slate-900 px-3 py-1">
       <details>
-        <summary className="group flex items-center gap-2 py-2 marker:content-none">
+        <summary className="group flex items-center gap-2 py-3 marker:content-none">
           <input
             type="checkbox"
             id={`toggle-btn-${id}`}
@@ -39,14 +39,20 @@ function Task({
           </span>
           <button
             onClick={() => onPriorityToggle(id)}
-            className={`${priorityColors[priority]}`}
+            className={`${priorityColors[priority]} hover:brightness-75 active:brightness-50`}
           >
             <i className="fa-regular fa-flag"></i>
           </button>
-          <button onClick={() => onEdit(id)} className="text-gray-400">
+          <button
+            onClick={() => onEdit(id)}
+            className="text-gray-400 hover:brightness-75 active:brightness-50"
+          >
             <i className="fa-solid fa-pencil"></i>
           </button>
-          <button onClick={() => onRemove(id)} className="text-gray-400">
+          <button
+            onClick={() => onRemove(id)}
+            className="text-gray-400 hover:brightness-75 active:brightness-50"
+          >
             <i className="fa-regular fa-trash-can"></i>
           </button>
         </summary>

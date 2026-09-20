@@ -127,13 +127,13 @@ function TaskModal({ ref, taskData, onFieldChange, folders, onSave, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="rounded-lg py-2.5 outline outline-neutral-700 hover:bg-gray-700 focus-visible:outline-offset-2 focus-visible:outline-gray-200 active:bg-gray-600"
+              className="rounded-lg py-2.5 outline outline-neutral-700 hover:bg-gray-700/30 focus-visible:outline-offset-2 focus-visible:outline-gray-200 active:bg-gray-700/60"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="rounded-lg bg-emerald-300 py-2.5 font-medium text-gray-900 outline hover:bg-emerald-200 focus-visible:outline-offset-2 focus-visible:outline-gray-200 active:bg-emerald-100"
+              className="rounded-lg bg-emerald-300 py-2.5 font-medium text-gray-900 outline hover:bg-emerald-300/70 focus-visible:outline-offset-2 focus-visible:outline-gray-200 active:bg-emerald-300/50"
             >
               Save
             </button>

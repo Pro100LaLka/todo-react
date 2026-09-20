@@ -69,6 +69,10 @@ function App() {
     ]);
   }
 
+  function handleTaskAdd() {
+    taskModal.current.showModal();
+  }
+
   function handleTaskToggle(id) {
     setTasks((prev) =>
       prev.map((task) =>
@@ -90,7 +94,7 @@ function App() {
     );
   }
 
-  function handleRemove(id) {
+  function handleTaskRemove(id) {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   }
 
@@ -141,8 +145,8 @@ function App() {
   }, [folders]);
 
   return (
-    <>
-      <Header onAdd={() => taskModal.current.showModal()} />
+    <main className="md:grid md:h-screen md:grid-cols-[280px_1fr] md:grid-rows-[auto_1fr]">
+      <Header onAdd={handleTaskAdd} selectedFolder={selectedFolder} />
       <Folders
         folders={folders}
         selectedFolder={selectedFolder}
@@ -156,7 +160,8 @@ function App() {
         onToggle={handleTaskToggle}
         onPriorityToggle={handlePriorityToggle}
         onEdit={handleEdit}
-        onRemove={handleRemove}
+        onRemove={handleTaskRemove}
+        onAdd={handleTaskAdd}
       />
       <TaskModal
         ref={taskModal}
@@ -166,7 +171,7 @@ function App() {
         onSave={handleSave}
         onClose={handleClose}
       />
-    </>
+    </main>
   );
 }
 
