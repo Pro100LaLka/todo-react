@@ -98,6 +98,13 @@ function App() {
     setTasks((prev) => prev.filter((task) => task.id !== id));
   }
 
+  function getFolderTaskCount() {
+    if (selectedFolder.name === "All") return tasks.length;
+    if (selectedFolder.name === "Archieve")
+      return tasks.filter((task) => task.complete).length;
+    return tasks.filter((task) => task.folder === selectedFolder.name).length;
+  }
+
   // -------------------- task modal --------------------
   const taskModal = useRef(null);
 
@@ -138,6 +145,8 @@ function App() {
   // -------------------- persistence --------------------
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
+    console.log(tasks);
+    console.log(selectedFolder);
   }, [tasks]);
 
   useEffect(() => {
@@ -146,7 +155,11 @@ function App() {
 
   return (
     <main className="md:grid md:h-screen md:grid-cols-[280px_1fr] md:grid-rows-[auto_1fr]">
-      <Header onAdd={handleTaskAdd} selectedFolder={selectedFolder} />
+      <Header
+        onAdd={handleTaskAdd}
+        selectedFolder={selectedFolder}
+        taskCount={getFolderTaskCount}
+      />
       <Folders
         folders={folders}
         selectedFolder={selectedFolder}

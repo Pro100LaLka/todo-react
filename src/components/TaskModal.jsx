@@ -16,7 +16,7 @@ function TaskModal({ ref, taskData, onFieldChange, folders, onSave, onClose }) {
     <dialog
       ref={ref}
       onClick={handleDialogClose}
-      className="m-auto w-full rounded-2xl bg-gray-800 text-gray-100"
+      className="m-auto w-full max-w-200 scrollbar-thumb-gray-500 scrollbar-track-transparent rounded-2xl bg-gray-800 text-gray-100"
     >
       <div className="px-4 py-6">
         <div className="mb-4 flex items-center justify-between">
@@ -66,42 +66,57 @@ function TaskModal({ ref, taskData, onFieldChange, folders, onSave, onClose }) {
           />
           <fieldset>
             <legend className="mb-1 text-gray-300">Priority</legend>
-            <div className="mb-6 grid grid-cols-3 gap-3">
-              <div className="has-checked:text-red-350 rounded-full bg-gray-900 py-1.5 text-center font-semibold text-gray-400 outline outline-neutral-700 has-checked:bg-red-400/30 has-checked:outline-red-400 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
+            <div className="mb-2 grid grid-cols-3 gap-3">
+              <div className="has-checked:text-red-350 rounded-full bg-gray-900 text-center font-semibold text-gray-400 outline outline-neutral-700 hover:brightness-85 has-checked:bg-red-400/30 has-checked:outline-red-400 has-checked:hover:brightness-100 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
                 <input
                   type="radio"
                   name="priority"
                   id="high"
-                  className="sr-only"
+                  className="peer sr-only"
                   value="High"
                   checked={taskData.priority === "High"}
                   onChange={(e) => onFieldChange("priority", e.target.value)}
                 />
-                <label htmlFor="high">High</label>
+                <label
+                  htmlFor="high"
+                  className="inline-block h-full w-full cursor-pointer rounded-full py-1.5 peer-checked:cursor-default"
+                >
+                  High
+                </label>
               </div>
-              <div className="rounded-full bg-gray-900 py-1.5 text-center font-semibold text-gray-400 outline outline-neutral-700 has-checked:bg-yellow-400/30 has-checked:text-yellow-400 has-checked:outline-yellow-400 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
+              <div className="rounded-full bg-gray-900 text-center font-semibold text-gray-400 outline outline-neutral-700 hover:brightness-85 has-checked:bg-yellow-400/30 has-checked:text-yellow-400 has-checked:outline-yellow-400 has-checked:hover:brightness-100 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
                 <input
                   type="radio"
                   name="priority"
                   id="medium"
-                  className="sr-only"
+                  className="peer sr-only"
                   value="Medium"
                   checked={taskData.priority === "Medium"}
                   onChange={(e) => onFieldChange("priority", e.target.value)}
                 />
-                <label htmlFor="medium">Medium</label>
+                <label
+                  htmlFor="medium"
+                  className="inline-block h-full w-full cursor-pointer rounded-full py-1.5 peer-checked:cursor-default"
+                >
+                  Medium
+                </label>
               </div>
-              <div className="rounded-full bg-gray-900 py-1.5 text-center font-semibold text-gray-400 outline outline-neutral-700 has-checked:bg-gray-400/30 has-checked:text-gray-300 has-checked:outline-gray-400 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
+              <div className="rounded-full bg-gray-900 text-center font-semibold text-gray-400 outline outline-neutral-700 hover:brightness-85 has-checked:bg-gray-400/30 has-checked:text-gray-300 has-checked:outline-gray-400 has-checked:hover:brightness-100 has-focus-visible:outline-offset-2 has-focus-visible:outline-gray-200">
                 <input
                   type="radio"
                   name="priority"
                   id="low"
-                  className="sr-only"
+                  className="peer sr-only"
                   value="Low"
                   checked={taskData.priority === "Low"}
                   onChange={(e) => onFieldChange("priority", e.target.value)}
                 />
-                <label htmlFor="low">Low</label>
+                <label
+                  htmlFor="low"
+                  className="inline-block h-full w-full cursor-pointer rounded-full py-1.5 peer-checked:cursor-default"
+                >
+                  Low
+                </label>
               </div>
             </div>
           </fieldset>

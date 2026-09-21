@@ -1,6 +1,6 @@
-function Header({ onAdd, selectedFolder }) {
+function Header({ onAdd, selectedFolder, taskCount }) {
   return (
-    <header className="flex justify-between p-4 md:px-12 md:py-6">
+    <header className="flex justify-between p-4 md:px-12">
       <div className="flex cursor-default items-center md:hidden">
         <div className="flex size-8 items-center justify-center rounded-lg bg-emerald-300">
           <i className="fa-solid fa-check text-base text-black"></i>
@@ -9,14 +9,15 @@ function Header({ onAdd, selectedFolder }) {
           Tasker
         </h1>
       </div>
-      <div className="hidden items-center md:flex">
+      <div className="hidden flex-col gap-3 md:flex">
         <h2 className="text-3xl font-bold text-gray-200 lg:text-4xl">
           {selectedFolder.name}
         </h2>
+        <p className="text-gray-400">{taskCount()} Tasks</p>
       </div>
       <button
         onClick={onAdd}
-        className="rounded-lg bg-emerald-300 p-2.5 hover:brightness-75 active:bg-emerald-300/50 sm:px-5 sm:py-2"
+        className="self-center rounded-lg bg-emerald-300 p-2.5 hover:brightness-75 active:bg-emerald-300/50 sm:px-5 sm:py-2"
       >
         <i className="fa-solid fa-plus"></i>
         <span className="ml-2 hidden text-lg font-medium sm:inline">

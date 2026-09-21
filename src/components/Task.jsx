@@ -34,7 +34,7 @@ function Task({
               <i className="fa-solid fa-check text-xs"></i>
             </div>
           </label>
-          <span className="min-w-0 grow text-lg wrap-break-word text-gray-200">
+          <span className="min-w-0 grow text-lg wrap-break-word text-gray-200 md:text-xl">
             {title}
           </span>
           <button
