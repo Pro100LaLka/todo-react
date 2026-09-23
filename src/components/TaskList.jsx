@@ -56,7 +56,7 @@ function TaskList({
       </p>
       <button
         onClick={onAdd}
-        className="rounded-lg bg-emerald-300 px-4 py-2 font-medium text-neutral-900 hover:bg-green-400 active:bg-green-500"
+        className="rounded-lg bg-emerald-300 px-4 py-2 font-medium text-neutral-900 hover:brightness-60 active:brightness-50"
       >
         + Add task
       </button>

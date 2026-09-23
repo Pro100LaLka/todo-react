@@ -17,7 +17,7 @@ function Header({ onAdd, selectedFolder, taskCount }) {
       </div>
       <button
         onClick={onAdd}
-        className="self-center rounded-lg bg-emerald-300 p-2.5 hover:brightness-75 active:bg-emerald-300/50 sm:px-5 sm:py-2"
+        className="self-center rounded-lg bg-emerald-300 p-2.5 hover:brightness-75 active:brightness-60 sm:px-5 sm:py-2"
       >
         <i className="fa-solid fa-plus"></i>
         <span className="ml-2 hidden text-lg font-medium sm:inline">
