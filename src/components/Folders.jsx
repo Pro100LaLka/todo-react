@@ -59,7 +59,7 @@ function Folders({ folders, selectedFolder, onClick, addFolder, onRemove }) {
             onClose={() => setFolderName("")}
             ref={dialogRef}
             onClick={handleDialogClickOutside}
-            className="m-auto w-full rounded-2xl bg-gray-800 text-gray-100"
+            className="m-auto w-full max-w-200 rounded-2xl bg-gray-800 text-gray-100"
           >
             <div className="px-4 py-6">
               <div className="mb-4 flex items-center justify-between">
