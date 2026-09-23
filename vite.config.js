@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
     babel({ presets: [reactCompilerPreset()] }),
   ],
-  base: "/todo-react/",
+  base: "./",
   server: {
     host: "127.0.0.1",
   },
