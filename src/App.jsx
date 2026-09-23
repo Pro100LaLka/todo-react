@@ -99,10 +99,14 @@ function App() {
   }
 
   function getFolderTaskCount() {
-    if (selectedFolder.name === "All") return tasks.length;
     if (selectedFolder.name === "Archieve")
-      return tasks.filter((task) => task.complete).length;
-    return tasks.filter((task) => task.folder === selectedFolder.name).length;
+      return tasks.filter((task) => task.isComplete).length;
+    const notComplete = tasks.filter((task) => !task.isComplete);
+
+    if (selectedFolder.name === "All") return notComplete.length;
+
+    return notComplete.filter((task) => task.folder === selectedFolder.name)
+      .length;
   }
 
   // -------------------- task modal --------------------
